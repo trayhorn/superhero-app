@@ -1,0 +1,33 @@
+# Node
+.vscode/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Server-specific ignores
+server/node_modules/
+server/dist/
+server/.env
+
+# Client-specific ignores
+client/node_modules/
+client/dist/
+client/build/
+client/.env
