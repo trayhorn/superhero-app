@@ -1,20 +1,43 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --font-main: 'Roboto', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+
+  --primary-bg-color: #353839;
+  --primary-bg-light: #4B4E50;
+  --secondary-bg-color: #FFD700;
+  --accent-color: #FF4500;
+  --text-primary-color: #FFFFFF;
+  --text-secondary-color: #1A1A1A;
+  --border-color: #5A5A5A;
+  --hover-color: #FFA500;
+  --success-color: #28a745;
+  --error-color: #dc3545;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--primary-bg-light);
 }
 
 h1 {
+  text-align: center;
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 0;
 }
 
 button {

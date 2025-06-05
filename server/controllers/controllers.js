@@ -3,7 +3,7 @@ import HttpError from "../helpers/HttpError.js";
 import ctrlWrapper from "../helpers/ctrlWrapper.js";
 
 const getAllHeroes = async (req, res) => {
-  const superheroes = await Superhero.find({});
+  const superheroes = await Superhero.find({}, "-createdAt -updatedAt");
 
   res.status(200).json({
     message: "success",
