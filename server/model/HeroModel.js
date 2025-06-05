@@ -22,6 +22,16 @@ const heroSchema = new Schema({
 		type: String,
 		required: true,
 	},
-}, {versionKey: false, timestamps: true});
+}, { versionKey: false, timestamps: true });
 
-export const Superhero = model("superhero", heroSchema, "superheroes");
+const superHeroSchema = Joi.object({
+	nickname: Joi.string().required(),
+	real_name: Joi.string().required(),
+	origin_description: Joi.string().required(),
+	superpowers: Joi.string().required(),
+	catch_phrase: Joi.string().required()
+})
+
+const Superhero = model("superhero", heroSchema, "superheroes");
+
+export { Superhero, addHeroSchema };
