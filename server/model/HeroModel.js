@@ -34,4 +34,4 @@ const superHeroSchema = Joi.object({
 
 const Superhero = model("superhero", heroSchema, "superheroes");
 
-export { Superhero, addHeroSchema };
+export { Superhero, superHeroSchema };
