@@ -14,6 +14,8 @@ app.use(cors());
 
 app.get("/superhero", ctrl.getAllHeroes);
 
+app.get("/superhero/:id", ctrl.getHeroById);
+
 app.post("/superhero/create", validateBody(superHeroSchema), ctrl.addHero);
 
 app.delete("/superhero/:id", ctrl.deleteHero);

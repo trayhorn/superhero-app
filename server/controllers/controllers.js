@@ -11,11 +11,17 @@ const getAllHeroes = async (req, res) => {
   })
 }
 
+const getHeroById = async (req, res) => {
+  const { id } = req.params;
+  const hero = await Superhero.findById(id);
+  if (!hero) throw HttpError(400, "No such hero");
+  res.status(200).json(hero);
+}
+
 const addHero = async (req, res) => {
   const newHero = await Superhero.create({ ...req.body });
 
   res.status(201).json({
-    message: "success",
 		newHero,
 	});
 }
@@ -53,7 +59,8 @@ const editHero = async (req, res) => {
 }
 
 export const ctrl = {
-	getAllHeroes: ctrlWrapper(getAllHeroes),
+  getAllHeroes: ctrlWrapper(getAllHeroes),
+  getHeroById: ctrlWrapper(getHeroById),
 	deleteHero: ctrlWrapper(deleteHero),
 	addHero: ctrlWrapper(addHero),
 	editHero: ctrlWrapper(editHero),

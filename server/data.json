@@ -1,72 +1,72 @@
 [
 	{
+		"nickname": "Batman",
+		"real_name": "Bruce Wayne",
+		"origin_description": "A wealthy socialite who witnessed the murder of his parents and devoted his life to fighting crime in Gotham City.",
+		"superpowers": "Peak human conditioning, martial arts expert, high intellect, master detective",
+		"catch_phrase": "I am the night."
+	},
+	{
 		"nickname": "Superman",
 		"real_name": "Clark Kent",
-		"origin_description": "He was born Kal-El on the planet Krypton, before being rocketed to Earth as an infant by his scientist father Jor-El, moments before Krypton's destruction.",
-		"superpowers": "Solar energy absorption and healing factor, solar flare and heat vision, solar invulnerability, flight",
-		"catch_phrase": "Look, up in the sky, it's a bird, it's a plane, it's Superman!"
+		"origin_description": "An alien from the planet Krypton, raised in Smallville on Earth, who defends humanity as Superman.",
+		"superpowers": "Super strength, flight, heat vision, x-ray vision, invulnerability, super speed",
+		"catch_phrase": "Truth, justice, and the American way!"
 	},
 	{
-		"nickname": "Shadowstrike",
-		"real_name": "Lena Voss",
-		"origin_description": "Former special ops agent who gained the ability to manipulate shadows after a failed experiment with dark matter.",
-		"superpowers": "Shadow manipulation, invisibility in darkness, silent movement, enhanced agility",
-		"catch_phrase": "You won't see me coming—until it's too late."
+		"nickname": "Wonder Woman",
+		"real_name": "Diana Prince",
+		"origin_description": "Amazonian warrior princess from Themyscira, sent to the world of men to promote peace and justice.",
+		"superpowers": "Super strength, flight, combat skill, Lasso of Truth, divine wisdom",
+		"catch_phrase": "In the name of all that is good, your wrath upon this world is over!"
 	},
 	{
-		"nickname": "Volt",
-		"real_name": "Eli Sparks",
-		"origin_description": "An electrical engineer struck by a freak lightning storm infused with experimental energy particles.",
-		"superpowers": "Electricity control, electromagnetic pulses, super speed in short bursts",
-		"catch_phrase": "Power surging, enemies purging!"
+		"nickname": "Flash",
+		"real_name": "Barry Allen",
+		"origin_description": "Forensic scientist struck by a lightning bolt infused with chemicals, granting him super-speed.",
+		"superpowers": "Super speed, time travel, phasing through objects, rapid healing",
+		"catch_phrase": "Fastest man alive!"
 	},
 	{
-		"nickname": "Frostbite",
-		"real_name": "Nina Glacier",
-		"origin_description": "A climate scientist turned superhero after an arctic expedition unlocked ancient cryogenic abilities.",
-		"superpowers": "Cryokinesis, ice armor generation, snowstorm creation",
-		"catch_phrase": "Feel the chill of justice!"
+		"nickname": "Green Lantern",
+		"real_name": "Hal Jordan",
+		"origin_description": "An astronaut chosen by a sentient ring to join the Green Lantern Corps and protect the universe.",
+		"superpowers": "Power ring constructs, flight, energy projection, universal translate",
+		"catch_phrase": "In brightest day, in blackest night, no evil shall escape my sight!"
 	},
 	{
-		"nickname": "Inferno",
-		"real_name": "Dante Blaze",
-		"origin_description": "A firefighter exposed to alien fire spores that altered his DNA forever.",
-		"superpowers": "Pyrokinesis, fire immunity, flame flight",
-		"catch_phrase": "Let’s turn up the heat!"
+		"nickname": "Spider-Man",
+		"real_name": "Peter Parker",
+		"origin_description": "A young man bitten by a radioactive spider who fights crime in New York City while balancing everyday life.",
+		"superpowers": "Wall-crawling, spider-sense, super strength, agility, web-shooting",
+		"catch_phrase": "With great power comes great responsibility."
 	},
 	{
-		"nickname": "Mirage",
-		"real_name": "Selene Ray",
-		"origin_description": "A gifted illusionist who discovered a magical relic that made her illusions real.",
-		"superpowers": "Reality-bending illusions, mental manipulation, stealth",
-		"catch_phrase": "Everything you see is a lie—except your defeat."
+		"nickname": "Iron Man",
+		"real_name": "Tony Stark",
+		"origin_description": "Genius billionaire who built a powered armor suit to save his life and protect the world.",
+		"superpowers": "Powered armor suit: flight, repulsor blasts, AI assistance, super strength",
+		"catch_phrase": "I am Iron Man."
 	},
 	{
-		"nickname": "Ironclad",
-		"real_name": "Marcus Steele",
-		"origin_description": "Exosuit engineer who built the ultimate suit of armor after surviving a lab explosion.",
-		"superpowers": "Super strength, impenetrable armor, built-in weapons",
-		"catch_phrase": "Unbreakable. Unstoppable. Unmatched."
+		"nickname": "Thor",
+		"real_name": "Thor Odinson",
+		"origin_description": "Norse god of thunder from Asgard, wielding the magic hammer Mjolnir.",
+		"superpowers": "Godlike strength, control over lightning and storms, longevity, flight via Mjolnir",
+		"catch_phrase": "For Asgard!"
 	},
 	{
-		"nickname": "Wavelength",
-		"real_name": "Tara Lee",
-		"origin_description": "A sound engineer caught in a sonic experiment gone wrong, gaining control over all frequencies.",
-		"superpowers": "Sonic blasts, echolocation, soundwave travel",
-		"catch_phrase": "Hear that? It’s the sound of your defeat."
+		"nickname": "Hulk",
+		"real_name": "Bruce Banner",
+		"origin_description": "A scientist exposed to gamma radiation who transforms into the Hulk when enraged.",
+		"superpowers": "Unlimited strength based on rage, regeneration, high resistance to injury",
+		"catch_phrase": "Hulk smash!"
 	},
 	{
-		"nickname": "Titan",
-		"real_name": "Gregory Stone",
-		"origin_description": "A geologist who became one with the Earth's core during a mysterious seismic event.",
-		"superpowers": "Earth manipulation, super strength, seismic stomp",
-		"catch_phrase": "The Earth rumbles when justice walks!"
-	},
-	{
-		"nickname": "Nebula",
-		"real_name": "Nova Star",
-		"origin_description": "A cosmic explorer blessed with stardust powers after being lost in a galactic storm.",
-		"superpowers": "Teleportation, starlight beams, spaceflight, energy manipulation",
-		"catch_phrase": "Born from the stars, destined to shine!"
+		"nickname": "Captain America",
+		"real_name": "Steve Rogers",
+		"origin_description": "A World War II veteran enhanced by a super-soldier serum, now a symbol of justice and freedom.",
+		"superpowers": "Enhanced strength, agility, endurance, expert tactician, uses vibranium shield",
+		"catch_phrase": "I can do this all day."
 	}
 ]
