@@ -31,6 +31,14 @@ export default function GalleryPage() {
 		setHeroes((prev) => prev.filter((hero) => hero._id !== id));
 	}, []);
 
+	const openModal = () => {
+		setIsModalOpen(true);
+	}
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
+
 	useEffect(() => {
 		const fetchAllHerous = async () => {
 			const { data } = await getAllHerousRequest();
@@ -42,12 +50,12 @@ export default function GalleryPage() {
 
   return (
 		<>
-			<Header openModal={() => setIsModalOpen(true)} />
+			<Header openModal={openModal} />
 			<HeroGallery heroes={heroes} onDelete={handleHeroDelete} />
 
 			<Modal style={modalStyles} isOpen={isModalOpen}>
-				<AddHeroForm handleHeroAdd={handleHeroAdd} />
-				<button className="modalButton" onClick={() => setIsModalOpen(false)}>
+				<AddHeroForm handleHeroAdd={handleHeroAdd} closeModal={closeModal} />
+				<button className="modalButton" onClick={closeModal}>
 					Close
 				</button>
 			</Modal>

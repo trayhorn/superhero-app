@@ -5,4 +5,5 @@ export type superHero = {
   origin_description: string;
   superpowers: string;
   catch_phrase: string;
+  avatar: string
 };

@@ -1,35 +1,43 @@
 import { Schema, model } from "mongoose";
 import Joi from "joi";
 
-const heroSchema = new Schema({
-	nickname: {
-		type: String,
-		required: true,
+const heroSchema = new Schema(
+	{
+		nickname: {
+			type: String,
+			required: true,
+		},
+		real_name: {
+			type: String,
+			required: true,
+		},
+		origin_description: {
+			type: String,
+			required: true,
+		},
+		superpowers: {
+			type: String,
+			required: true,
+		},
+		catch_phrase: {
+			type: String,
+			required: true,
+		},
+		avatar: {
+			type: String,
+			requered: false,
+		},
 	},
-	real_name: {
-		type: String,
-		required: true,
-	},
-	origin_description: {
-		type: String,
-		required: true,
-	},
-	superpowers: {
-		type: String,
-		required: true,
-	},
-	catch_phrase: {
-		type: String,
-		required: true,
-	},
-}, { versionKey: false, timestamps: true });
+	{ versionKey: false, timestamps: true }
+);
 
 const superHeroSchema = Joi.object({
 	nickname: Joi.string().required(),
 	real_name: Joi.string().required(),
 	origin_description: Joi.string().required(),
 	superpowers: Joi.string().required(),
-	catch_phrase: Joi.string().required()
+	catch_phrase: Joi.string().required(),
+	avatar: Joi.string(),
 })
 
 const Superhero = model("superhero", heroSchema, "superheroes");

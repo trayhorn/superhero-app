@@ -1,6 +1,10 @@
 import { Superhero } from "../model/HeroModel.js";
 import HttpError from "../helpers/HttpError.js";
 import ctrlWrapper from "../helpers/ctrlWrapper.js";
+import path from "path";
+import fs from "fs/promises";
+
+const dirname = import.meta.dirname;
 
 const getAllHeroes = async (req, res) => {
   const superheroes = await Superhero.find({}, "-createdAt -updatedAt");
@@ -19,11 +23,22 @@ const getHeroById = async (req, res) => {
 }
 
 const addHero = async (req, res) => {
-  const newHero = await Superhero.create({ ...req.body });
+  const { path: oldPath, originalname } = req.file;
+  const imagesDir = path.join(dirname, "../", "public", "images");
+
+  const imageUrl = path.join('images', originalname);
+
+  const newHero = await Superhero.create(
+		{ ...req.body, avatar: imageUrl }
+  );
+  
+  const { createdAt, updatedAt, ...rest } = newHero.toObject();
+
+  await fs.rename(oldPath, imagesDir + "/" + originalname);
 
   res.status(201).json({
-		newHero,
-	});
+		newHero: rest
+  });
 }
 
 const deleteHero = async (req, res) => {

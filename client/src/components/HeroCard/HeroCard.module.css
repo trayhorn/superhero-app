@@ -10,8 +10,6 @@
   cursor: pointer;
 }
 
-
-
 .deleteIcon {
   position: absolute;
   top: 10px;
@@ -33,4 +31,17 @@
   display: inline-block;
   width: 100%;
   height: 100%;
+}
+
+/* .imageWrapper {
+
+} */
+
+.image {
+  display: block;
+}
+
+.nickname {
+  margin-top: var(--spacing-sm);
+  text-align: center;
 }
