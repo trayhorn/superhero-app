@@ -10,3 +10,7 @@ export const getAllHerousRequest = () => {
 export const addHeroRequest = (body: superHero) => {
 	return axios.post("/superhero/create", body);
 };
+
+export const deleteHeroRequest = (id: string) => {
+  return axios.delete(`/superhero/${id}`);
+}

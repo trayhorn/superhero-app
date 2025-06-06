@@ -26,7 +26,11 @@ function App() {
 
   const handleHeroAdd = useCallback((newHero: superHero) => {
 		setHeroes((prev) => [...prev, newHero]);
-	}, []);
+  }, []);
+  
+  const handleHeroDelete = useCallback((id: string) => {
+    setHeroes(prev => prev.filter(hero => hero._id !== id));
+  }, [])
 
   useEffect(() => {
     const fetchAllHerous = async () => {
@@ -40,7 +44,7 @@ function App() {
   return (
 		<>
 			<Header openModal={() => setIsModalOpen(true)} />
-			<HeroGallery heroes={heroes} />
+			<HeroGallery heroes={heroes} onDelete={handleHeroDelete} />
 
 			<Modal style={modalStyles} isOpen={isModalOpen}>
 				<AddHeroForm handleHeroAdd={handleHeroAdd} />
