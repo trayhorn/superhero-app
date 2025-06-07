@@ -23,12 +23,16 @@ const heroSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		avatar: {
-			type: String,
-			requered: false,
-		},
+		// avatar: {
+		// 	type: String,
+		// 	requered: false,
+		// },
+		images: {
+			type: [String],
+			default: [],
+		}
 	},
-	{ versionKey: false, timestamps: true }
+	{ versionKey: false, timestamps: false }
 );
 
 const superHeroSchema = Joi.object({
@@ -37,7 +41,8 @@ const superHeroSchema = Joi.object({
 	origin_description: Joi.string().required(),
 	superpowers: Joi.string().required(),
 	catch_phrase: Joi.string().required(),
-	avatar: Joi.string(),
+	// avatar: Joi.string(),
+	images: Joi.array().items(Joi.string()).default([]),
 })
 
 const Superhero = model("superhero", heroSchema, "superheroes");

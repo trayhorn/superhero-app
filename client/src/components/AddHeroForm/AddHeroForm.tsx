@@ -1,7 +1,6 @@
 import type { superHero } from "../../types/types";
 import styles from "./AddHeroForm.module.css";
 import { Formik, Form, Field } from "formik";
-// import { useEffect, useState } from "react";
 import { addHeroRequest } from "../../api";
 
 type Form = {
@@ -10,20 +9,6 @@ type Form = {
 };
 
 export default function AddHeroForm({ handleHeroAdd, closeModal }: Form) {
-	// const [formData, setFormData] = useState<superHero | null>(null);
-
-	// useEffect(() => {
-	// 	const handleCreateHero = async () => {
-	// 		if (formData) {
-	// 			// const { data } = await addHeroRequest(formData);
-	//       // handleHeroAdd(data.newHero);
-	//       // setFormData(null);
-	// 		}
-	// 	};
-
-	// 	handleCreateHero();
-	// }, [formData, handleHeroAdd]);
-
 	return (
 		<Formik
 			initialValues={{
@@ -32,17 +17,25 @@ export default function AddHeroForm({ handleHeroAdd, closeModal }: Form) {
 				origin_description: "",
 				superpowers: "",
 				catch_phrase: "",
-				avatar: null,
+				images: [],
 			}}
 			onSubmit={async (values, actions) => {
 				const formData = new FormData();
 
-				Object.entries(values).forEach(([key, value]) => {
-					if (key && value) formData.append(key, value);
-				});
+				formData.append("nickname", values.nickname);
+				formData.append("real_name", values.real_name);
+				formData.append("origin_description", values.origin_description);
+				formData.append("superpowers", values.superpowers);
+				formData.append("catch_phrase", values.catch_phrase);
 
-				const newHero = await addHeroRequest(formData);
-				handleHeroAdd(newHero);
+				if (values.images && values.images.length > 0) {
+					for (let i = 0; i < values.images.length; i++) {
+						formData.append("images", values.images[i]);
+					}
+				}
+
+				const { data } = await addHeroRequest(formData);
+				handleHeroAdd(data);
 
 				closeModal();
 				actions.resetForm();
@@ -85,9 +78,11 @@ export default function AddHeroForm({ handleHeroAdd, closeModal }: Form) {
 						type="file"
 						name="avatar"
 						id="avatar"
+						multiple
 						onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-							if (e.currentTarget.files && e.currentTarget.files[0]) {
-								setFieldValue("avatar", e.currentTarget.files[0]);
+							if (e.currentTarget.files) {
+								setFieldValue("images", e.currentTarget.files);
+								// console.log(e.currentTarget.files);
 							}
 						}}
 					/>

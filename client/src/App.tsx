@@ -2,13 +2,16 @@ import './App.css';
 import { Routes, Route, Navigate } from "react-router-dom";
 import GalleryPage from "./pages/GalleryPage";
 import SuperheroDetailsPage from "./pages/SuperheroDetails/SuperheroDetailsPage";
+import Header from './components/Header/Header';
 
 function App() {
   return (
 		<Routes>
 			<Route path="/" element={<Navigate to="/superheroes" replace />} />
-			<Route path="/superheroes" element={<GalleryPage />} />
-			<Route path="/superheroes/:id" element={<SuperheroDetailsPage />} />
+			<Route path="/superheroes" element={<Header />}>
+				<Route index element={<GalleryPage />} />
+				<Route path=":id" element={<SuperheroDetailsPage />} />
+			</Route>
 		</Routes>
 	);
 }

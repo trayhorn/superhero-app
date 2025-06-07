@@ -2,3 +2,49 @@
 .detailsContainer {
   margin: var(--spacing-md);
 }
+
+.wrapper {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detailsContainerBtn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: white;
+  color: var(--text-secondary-color);
+  border-radius: 5px;
+}
+
+.avatarWrapper {
+  max-width: 40%;
+  max-height: 600px;
+}
+
+.avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagesList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-md) 0;
+
+}
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -7,7 +7,13 @@ import fs from "fs/promises";
 const dirname = import.meta.dirname;
 
 const getAllHeroes = async (req, res) => {
-  const superheroes = await Superhero.find({}, "-createdAt -updatedAt");
+  const { page = 1, limit = 5 } = req.query;
+	const skip = (page - 1) * limit;
+
+  const superheroes = await Superhero.find({}, "_id nickname images", {
+    skip,
+    limit
+  });
 
   res.status(200).json({
     message: "success",
@@ -23,22 +29,34 @@ const getHeroById = async (req, res) => {
 }
 
 const addHero = async (req, res) => {
-  const { path: oldPath, originalname } = req.file;
-  const imagesDir = path.join(dirname, "../", "public", "images");
+  const { nickname } = req.body;
+  const files = req.files;
+  const imagesArray = [];
 
-  const imageUrl = path.join('images', originalname);
+  await Promise.all(
+    files.map(async (file) => {
+      const { originalname, path: oldPath } = file;
 
-  const newHero = await Superhero.create(
-		{ ...req.body, avatar: imageUrl }
-  );
-  
-  const { createdAt, updatedAt, ...rest } = newHero.toObject();
+      const heroDirName = nickname.toLowerCase().trim().replace(/\s+/g, "-");
+      const imagesSaveDir = path.join(
+				dirname,
+				"../",
+				"public",
+				"images",
+				heroDirName
+			);
 
-  await fs.rename(oldPath, imagesDir + "/" + originalname);
+      await fs.mkdir(imagesSaveDir, { recursive: true });
 
-  res.status(201).json({
-		newHero: rest
-  });
+      const imageUrl = path.join("images", heroDirName , originalname);
+      imagesArray.push(imageUrl);
+
+      await fs.rename(oldPath, path.join(imagesSaveDir, originalname));
+    })
+  )
+
+  const newHero = await Superhero.create({ ...req.body, images: imagesArray });
+  res.status(201).json(newHero);
 }
 
 const deleteHero = async (req, res) => {
@@ -74,8 +92,8 @@ const editHero = async (req, res) => {
 }
 
 export const ctrl = {
-  getAllHeroes: ctrlWrapper(getAllHeroes),
-  getHeroById: ctrlWrapper(getHeroById),
+	getAllHeroes: ctrlWrapper(getAllHeroes),
+	getHeroById: ctrlWrapper(getHeroById),
 	deleteHero: ctrlWrapper(deleteHero),
 	addHero: ctrlWrapper(addHero),
 	editHero: ctrlWrapper(editHero),

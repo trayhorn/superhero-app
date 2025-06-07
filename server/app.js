@@ -32,7 +32,7 @@ app.get("/superhero", ctrl.getAllHeroes);
 
 app.get("/superhero/:id", ctrl.getHeroById);
 
-app.post("/superhero/create", upload.single("avatar"), validateBody(superHeroSchema), ctrl.addHero);
+app.post("/superhero/create", upload.array("images"), validateBody(superHeroSchema), ctrl.addHero);
 
 app.delete("/superhero/:id", ctrl.deleteHero);
 

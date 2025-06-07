@@ -1,16 +1,13 @@
 import styles from './Header.module.css';
+import { Outlet } from 'react-router-dom';
 
-type Header = {
-  openModal: () => void;
-}
-
-export default function Header({openModal}: Header) {
+export default function Header() {
 	return (
-		<header className={styles.header}>
-			<h1 className={styles.header_title}>Superheroes</h1>
-			<button className={styles.header_button} onClick={openModal}>
-				Add
-			</button>
-		</header>
+		<>
+			<header className={styles.header}>
+				<h1 className={styles.header_title}>Superheroes</h1>
+			</header>
+			<Outlet />
+		</>
 	);
 }
