@@ -18,6 +18,4 @@ A simple web application for managing superheroes. Users can view, edit, and upl
 
 1. **Clone the repository**
 
-```bash
-git clone https://github.com/your-username/superhero-app.git
-cd superhero-app
+2. Use "npm run dev" in server folder and client to start the app
