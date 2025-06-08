@@ -19,3 +19,7 @@ export const addHeroRequest = (body: FormData) => {
 export const deleteHeroRequest = (id: string) => {
   return axios.delete(`/superhero/${id}`);
 }
+
+export const editHeroRequest = (id: string, body: FormData) => {
+	return axios.put(`/superhero/${id}`, body);
+};

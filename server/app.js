@@ -36,7 +36,7 @@ app.post("/superhero/create", upload.array("images"), validateBody(superHeroSche
 
 app.delete("/superhero/:id", ctrl.deleteHero);
 
-app.put("/superhero/:id", validateBody(superHeroSchema), ctrl.editHero);
+app.put("/superhero/:id", upload.array("newImages"), ctrl.editHero);
 
 app.use((err, req, res, next) => {
   const { status = 500, message = "Server error" } = err;

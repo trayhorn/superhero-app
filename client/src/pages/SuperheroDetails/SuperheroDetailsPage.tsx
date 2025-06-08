@@ -6,8 +6,12 @@ import SuperheroDetails from "../../components/SuperheroDetails/SuperheroDetails
 
 export default function SuperheroDetailsPage() {
 	const { id } = useParams();
-
 	const [heroDetails, setHeroDetails] = useState<superHero | null>(null);
+
+	const getUpdatedHeroDetails = (updatedHeroDetails: superHero) => {
+		setHeroDetails(updatedHeroDetails)
+	}
+
 
 	useEffect(() => {
 		const handleGetHeroById = async (id: string) => {
@@ -23,6 +27,9 @@ export default function SuperheroDetailsPage() {
   }, [id]);
 
 	return (
-		<SuperheroDetails heroDetails={heroDetails} />
+		<SuperheroDetails
+			heroDetails={heroDetails}
+			getUpdatedHeroDetails={getUpdatedHeroDetails}
+		/>
 	);
 }
