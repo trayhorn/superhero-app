@@ -4,9 +4,15 @@ import { useEffect, useState } from "react";
 import type { superHero } from "../../types/types";
 import SuperheroDetails from "../../components/SuperheroDetails/SuperheroDetails";
 
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+
 export default function SuperheroDetailsPage() {
 	const { id } = useParams();
 	const [heroDetails, setHeroDetails] = useState<superHero | null>(null);
+
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
 
 	const getUpdatedHeroDetails = (updatedHeroDetails: superHero) => {
 		setHeroDetails(updatedHeroDetails)
@@ -16,10 +22,17 @@ export default function SuperheroDetailsPage() {
 	useEffect(() => {
 		const handleGetHeroById = async (id: string) => {
 			try {
+				setLoading(true);
+				setError(false);
+
 				const { data } = await getHeroByIdRequest(id);
 				setHeroDetails(data);
 			} catch (error) {
-				console.log(error);
+				console.error("Error fetching superhero details:", error);
+				setError(true);
+				setLoading(false);
+			} finally {
+				setLoading(false);
 			}
 		};
 
@@ -27,9 +40,18 @@ export default function SuperheroDetailsPage() {
   }, [id]);
 
 	return (
-		<SuperheroDetails
-			heroDetails={heroDetails}
-			getUpdatedHeroDetails={getUpdatedHeroDetails}
-		/>
+		<>
+			{error ? (
+					<ErrorMessage message="Something went wrong. Please try again." />
+				) : loading ? (
+					<Loader />
+				) : (
+					<SuperheroDetails
+						heroDetails={heroDetails}
+						getUpdatedHeroDetails={getUpdatedHeroDetails}
+					/>
+				)
+			}
+		</>
 	);
 }

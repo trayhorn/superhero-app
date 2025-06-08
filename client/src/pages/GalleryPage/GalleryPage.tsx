@@ -8,6 +8,8 @@ import CreateHeroBtn from "../../components/CreateHeroBtn/CreateHeroBtn";
 import { useRef } from "react";
 import styles from "./GalleryPage.module.css";
 import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import { IoMdClose } from "react-icons/io";
 
 Modal.setAppElement("#root");
 
@@ -26,8 +28,10 @@ export default function GalleryPage() {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [page, setPage] = useState<number>(1);
 
-	const [loading, setLoading] = useState(true);
+	const [loadingInitial, setLoadingInitial] = useState(true);
 	const [error, setError] = useState(false);
+	const [loadingMore, setLoadingMore] = useState(false);
+	const [isLastPage, setIsLastPage] = useState(false);
 
 	const loadMoreButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -48,47 +52,54 @@ export default function GalleryPage() {
 	};
 
 	useEffect(() => {
-		const fetchAllHerous = async () => {
+		const fetchAllHeroes = async () => {
 			try {
-				setLoading(true);
+				if (page === 1) {
+					setLoadingInitial(true);
+				} else {
+					setLoadingMore(true);
+				}
+				setError(false);
+
 				const { data } = await getAllHerousRequest(page);
 
 				setHeroes((prev) =>
 					page === 1 ? data.superheroes : [...prev, ...data.superheroes]
 				);
-				if (data.totalPages === page) {
-					if (loadMoreButtonRef.current) {
-						loadMoreButtonRef.current.style.display = "none";
-					}
-				}
+
+				setIsLastPage(data.totalPages === page);
 			} catch (error) {
 				console.error("Error fetching heroes:", error);
 				setError(true);
-				setLoading(false);
 			} finally {
-				setLoading(false);
-				setError(false);
+				setLoadingInitial(false);
+				setLoadingMore(false);
 			}
 		};
 
-		fetchAllHerous();
+		fetchAllHeroes();
 	}, [page]);
 
 	return (
 		<>
-			{loading ? (
+			{error ? (
+				<ErrorMessage message="Something went wrong. Please try again." />
+			) : loadingInitial ? (
 				<Loader />
 			) : (
 				<>
 					<CreateHeroBtn openModal={openModal} />
 					<HeroGallery heroes={heroes} onDelete={handleHeroDelete} />
-					<button
-						className={styles.loadMoreButton}
-						ref={loadMoreButtonRef}
-						onClick={() => setPage((prev) => prev + 1)}
-					>
-						Load more
-					</button>
+					{!isLastPage && (
+						<button
+							className={styles.loadMoreButton}
+							ref={loadMoreButtonRef}
+							onClick={() => setPage((prev) => prev + 1)}
+							disabled={loadingMore}
+						>
+							{loadingMore ? "Loading..." : "Load more"}
+						</button>
+					)}
 
 					<Modal
 						style={modalStyles}
@@ -99,14 +110,15 @@ export default function GalleryPage() {
 							handleHeroAdd={handleHeroAdd}
 							closeModal={closeModal}
 						/>
-
-						<button className="modalButton" onClick={closeModal}>
+						<div className="modalButtonWrapper">
+							<IoMdClose className="modalButton" onClick={closeModal} />
+						</div>
+						{/* <button className="modalButton" onClick={closeModal} type="button">
 							Close
-						</button>
+						</button> */}
 					</Modal>
 				</>
 			)}
-			{error && <div>Something went wrong</div>}
 		</>
 	);
 }
