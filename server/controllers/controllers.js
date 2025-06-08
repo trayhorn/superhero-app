@@ -61,9 +61,14 @@ const deleteHero = async (req, res) => {
 
   const result = await Superhero.findByIdAndDelete(id);
 
-  if (!result) throw HttpError(400, "No such superhero");
+	if (!result) throw HttpError(400, "No such superhero");
 
-	res.status(204);
+	const imagesFolderPath = path.join(dirname, "..", "public", "images", id);
+	await fs.rm(imagesFolderPath, { recursive: true, force: true });
+
+	res.status(200).json({
+		message: "success",
+	});
 }
 
 const editHero = async (req, res) => {

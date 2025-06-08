@@ -113,9 +113,6 @@ export default function GalleryPage() {
 						<div className="modalButtonWrapper">
 							<IoMdClose className="modalButton" onClick={closeModal} />
 						</div>
-						{/* <button className="modalButton" onClick={closeModal} type="button">
-							Close
-						</button> */}
 					</Modal>
 				</>
 			)}

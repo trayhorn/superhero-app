@@ -77,7 +77,11 @@ export default function SuperheroDetails({
 
 		Object.entries(updatedFormData).forEach(([key, value]) => {
 			if (key !== "images") {
-				formDataToSend.append(key, value);
+				if (typeof value === "string") {
+					formDataToSend.append(key, value);
+				} else {
+					formDataToSend.append(key, JSON.stringify(value));
+				}
 			} else {
 				formDataToSend.append("images", JSON.stringify(updatedFormData.images));
 			}
